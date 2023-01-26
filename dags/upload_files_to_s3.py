@@ -37,6 +37,7 @@ def upload_files_to_s3():
             task_id="write_to_s3",
             aws_conn_id=AWS_CONN_ID,
             data=json.dumps(f"{my_num_as_int}"),
+            replace=True,
             s3_key=f"{MY_S3_BUCKET}/{my_num_as_int}.txt"
         )
 

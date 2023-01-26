@@ -10,7 +10,7 @@ log = logging.getLogger('airflow.task')
 
 
 @dag(
-    startdate=datetime(2023, 1, 1),
+    start_date=datetime(2023, 1, 1),
     schedule="@daily",
     tags=["Activity"],
     catchup=False,
