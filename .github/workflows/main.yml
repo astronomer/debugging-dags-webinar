@@ -11,4 +11,5 @@ jobs:
     steps:
     - name: Auto-pytest
       run: |
+        curl -sSL install.astronomer.io | sudo bash -s
         astro dev pytest
