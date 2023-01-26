@@ -66,8 +66,7 @@ FROM {{query_table}}"""
 
 @dag(
     schedule_interval=None,
-    start_date=pendulum.from_format("2022-11-03", "YYYY-MM-DD"),
-    dagrun_timeout=pendulum.duration(hours=3)  # fixed added dagrun_timeout
+    start_date=pendulum.from_format("2022-11-03", "YYYY-MM-DD")
 )
 def dog_intelligence():
     query_table = query_table_func()
