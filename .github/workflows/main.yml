@@ -1,0 +1,14 @@
+name: Astronomer CI - Deploy code
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Auto-pytest
+      run: |
+        astro dev pytest
