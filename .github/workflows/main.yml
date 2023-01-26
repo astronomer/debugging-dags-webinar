@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: checkout repo
+      uses: actions/checkout@v3
     - name: Auto-pytest
       run: |
         curl -sSL install.astronomer.io | sudo bash -s
