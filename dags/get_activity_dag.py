@@ -26,7 +26,7 @@ def get_activity_dag():
     @task 
     def write_activity_to_file(response):
         f = open("include/activity.txt", "a")
-        f.write(f"Today you will: {response['activity']}")  # fixed quotes
+        f.write(f"Today you will: {response['activity@]}")  # fixed quotes
         f.close()
 
     @task 
