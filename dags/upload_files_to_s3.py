@@ -5,7 +5,6 @@ from airflow.providers.amazon.aws.operators.s3 import (
 from pendulum import datetime, duration
 
 import json
-import uuid
 
 MY_S3_BUCKET = "s3://mytxtbucket"
 AWS_CONN_ID = "aws_conn"
