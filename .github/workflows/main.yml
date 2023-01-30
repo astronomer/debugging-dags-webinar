@@ -1,4 +1,4 @@
-name: Astronomer CI - Deploy code
+name: Testing CI
 
 on:
   push:
