@@ -15,3 +15,5 @@ jobs:
       run: |
         curl -sSL install.astronomer.io | sudo bash -s
         astro dev pytest
+    - name: Deploy
+      run: echo "deploy me!"
