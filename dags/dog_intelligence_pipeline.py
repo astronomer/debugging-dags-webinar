@@ -63,7 +63,7 @@ SELECT HEIGHT_LOW_INCHES, HEIGHT_HIGH_INCHES, WEIGHT_LOW_LBS, WEIGHT_HIGH_LBS,
     ELSE 'smart_dog'
     END AS INTELLIGENCE_CATEGORY
 FROM {{query_table}}"""
-# comment
+
 @dag(
     schedule_interval=None,
     start_date=pendulum.from_format("2022-11-03", "YYYY-MM-DD"),

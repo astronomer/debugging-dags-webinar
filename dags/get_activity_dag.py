@@ -7,7 +7,7 @@ API = "https://www.boredapi.com/api/activity"
 
 # get Airflow task and processor logger
 log = logging.getLogger('airflow.task')
-
+# comment
 
 @dag(
     start_date=datetime(2023, 1, 1),
