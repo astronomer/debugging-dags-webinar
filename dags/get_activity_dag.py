@@ -1,3 +1,10 @@
+"""
+### Fetch data from an API
+
+This DAG fetches an activity from the boredapi.com API and writes it to a file
+using task flow tasks.
+"""
+
 from airflow.decorators import dag, task
 from pendulum import datetime, duration
 import requests
@@ -5,30 +12,28 @@ import logging
 
 API = "https://www.boredapi.com/api/activity"
 
-# get Airflow task and processor logger
-log = logging.getLogger('airflow.task')
+log = logging.getLogger("airflow.task")
 
 @dag(
     start_date=datetime(2023, 1, 1),
     schedule="@daily",
     tags=["Activity"],
     catchup=False,
-    dagrun_timeout=duration(hours=1)
+    dagrun_timeout=duration(hours=1),
 )
 def get_activity_dag():
-
     @task
     def get_activity():
         r = requests.get(API)
         return r.json()
 
-    @task 
+    @task
     def write_activity_to_file(response):
         f = open("include/activity.txt", "a")
         f.write(f"Today you will: {response['activity']}")
         f.close()
 
-    @task 
+    @task
     def read_activity_from_file():
         f = open("include/activity.txt", "r")
         log.info(f.read(5))
@@ -38,4 +43,3 @@ def get_activity_dag():
 
 
 get_activity_dag()
-
