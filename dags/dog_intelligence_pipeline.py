@@ -14,7 +14,7 @@ import pandas as pd
 import pendulum
 
 SNOWFLAKE_CONN_ID = "snowflake_conn"
-IN_TABLE = "SANDBOX.TAMARAFINGERLIN.DOG_INTELLIGENCE"
+IN_TABLE = "MYDB.MYSCHEMA.MYTABLE"
 
 
 @aql.dataframe(task_id="model_task")
@@ -23,34 +23,26 @@ def model_task_func(transform_table: pd.DataFrame):
     from sklearn.preprocessing import StandardScaler
     from sklearn.ensemble import RandomForestClassifier
 
-    # use the table returned from the transform_table cell
     df = transform_table
 
-    # calculate baseline accuracy
     baseline_accuracy = df.iloc[:, -1].value_counts(normalize=True)[0]
 
-    # selecting predictors (X) and the target (y)
     X = df.iloc[:, :-1]
     y = df.iloc[:, -1]
 
-    # split the data into training data (80%) and testing data (20%)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.20, random_state=23
     )
 
-    # standardize features
     scaler = StandardScaler()
     X_train_s = scaler.fit_transform(X_train)
     X_test_s = scaler.transform(X_test)
 
-    # train a RandomForestClassifier on the training data
     model = RandomForestClassifier(max_depth=3, random_state=19)
     model.fit(X_train_s, y_train)
 
-    # score the trained model on the testing data
     score = model.score(X_test_s, y_test)
 
-    # get feature importances
     feature_importances = list(zip(X_train.columns, model.feature_importances_))
 
     return (
